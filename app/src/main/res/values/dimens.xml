@@ -15,10 +15,11 @@
     <dimen name="card_height">520dp</dimen>
     <dimen name="name_size">14dp</dimen>
     <dimen name="date_size">12dp</dimen>
-    <dimen name="tabs_height">32dp</dimen>
+    <dimen name="tabs_height">4dp</dimen>
     <dimen name="viewpager_height">340dp</dimen>
     <dimen name="empty_msg">18dp</dimen>
     <dimen name="load_btn_width">120dp</dimen>
     <dimen name="load_btn_height">40dp</dimen>
     <dimen name="progress_size">40dp</dimen>
+    <dimen name="side_click_size">120dp</dimen>
 </resources>

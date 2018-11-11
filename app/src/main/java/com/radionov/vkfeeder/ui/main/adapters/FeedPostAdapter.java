@@ -2,7 +2,6 @@ package com.radionov.vkfeeder.ui.main.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
@@ -88,6 +87,8 @@ public class FeedPostAdapter extends RecyclerView.Adapter<FeedPostAdapter.FeedPo
         private TabLayout tabLayout;
         private ViewPager photoPager;
 
+        private View prevPage;
+        private View nextPage;
 
         private FeedPostViewHolder(View itemView) {
             super(itemView);
@@ -99,6 +100,9 @@ public class FeedPostAdapter extends RecyclerView.Adapter<FeedPostAdapter.FeedPo
 
             tabLayout = itemView.findViewById(R.id.tab_indicator);
             photoPager = itemView.findViewById(R.id.photo_pager);
+
+            prevPage = itemView.findViewById(R.id.pager_prev);
+            nextPage = itemView.findViewById(R.id.pager_next);
         }
 
         private void bind(int position) {
@@ -154,22 +158,39 @@ public class FeedPostAdapter extends RecyclerView.Adapter<FeedPostAdapter.FeedPo
                     tabLayout.setVisibility(View.INVISIBLE);
                 } else if (photoSizes.size() > 1) {
                     photoPager.setVisibility(View.VISIBLE);
-                    photoPager.setOffscreenPageLimit(photoSizes.size());
                     tabLayout.setVisibility(View.VISIBLE);
+                    photoPager.setOffscreenPageLimit(photoSizes.size());
                     tabLayout.setupWithViewPager(photoPager);
+                    prevPage.setOnClickListener(this);
+                    nextPage.setOnClickListener(this);
                 } else {
                     photoPager.setVisibility(View.GONE);
                     tabLayout.setVisibility(View.INVISIBLE);
+                    prevPage.setOnClickListener(null);
+                    nextPage.setOnClickListener(null);
                 }
             }
         }
 
         @Override
         public void onClick(View v) {
-            ConstraintLayout layout = itemView.findViewById(R.id.card_layout);
-            layout.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
-           // layout.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            itemView.requestLayout();
+            switch (v.getId()) {
+                case R.id.pager_prev: {
+                    int currentPage = photoPager.getCurrentItem();
+                    if (currentPage == 0) return;
+                    photoPager.setCurrentItem(--currentPage);
+                    break;
+                } case R.id.pager_next: {
+                    int currentPage = photoPager.getCurrentItem();
+                    if (currentPage == photoPager.getAdapter().getCount()) return;
+                    photoPager.setCurrentItem(++currentPage);
+                    break;
+                }
+            }
+//            ConstraintLayout layout = itemView.findViewById(R.id.card_layout);
+//            layout.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
+//           // layout.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+//            itemView.requestLayout();
         }
     }
 }
