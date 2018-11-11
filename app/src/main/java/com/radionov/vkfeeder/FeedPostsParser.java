@@ -31,7 +31,7 @@ public class FeedPostsParser {
             try {
                 return response.optJSONObject("response").getString("next_from");
             } catch (JSONException e) {
-                Log.d(TAG, "parseNextPage: ");;
+                Log.d(TAG, "parseNextPage: " + e);;
             }
         }
         return EMPTY_STRING;
@@ -69,7 +69,7 @@ public class FeedPostsParser {
                         authors.put(group.id * -1, author);
                     } catch (Exception e) {
                         if (VKSdk.DEBUG)
-                            e.printStackTrace();
+                            Log.d(TAG, "parseData: " + e);
                     }
                 }
             }
@@ -82,7 +82,7 @@ public class FeedPostsParser {
                         result.add(post);
                     } catch (Exception e) {
                         if (VKSdk.DEBUG)
-                            e.printStackTrace();
+                            Log.d(TAG, "parseData: " + e);
                     }
                 }
             }
