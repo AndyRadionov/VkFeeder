@@ -161,14 +161,16 @@ public class MainActivity extends BaseActivity {
     }
 
     private void showProgress() {
-        loadButton.setText("");
-        loadButton.setEnabled(false);
-        loadBar.setVisibility(View.VISIBLE);
+        setLoadViews("", false, View.VISIBLE);
     }
 
     private void hideProgress() {
-        loadButton.setText(getString(R.string.load_more));
-        loadButton.setEnabled(true);
-        loadBar.setVisibility(View.INVISIBLE);
+        setLoadViews(getString(R.string.load_more), true, View.INVISIBLE);
+    }
+
+    private void setLoadViews(String btnText, boolean btnEnabled, int progressVisibility) {
+        loadButton.setText(btnText);
+        loadButton.setEnabled(btnEnabled);
+        loadBar.setVisibility(progressVisibility);
     }
 }
