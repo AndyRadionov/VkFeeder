@@ -66,7 +66,9 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onNetworkChange(boolean isConnected) {
-        mainViewModel.onNetworkChange(isConnected);
+        if (mainViewModel != null) {
+            mainViewModel.onNetworkChange(isConnected);
+        }
         if (!isConnected) {
             showNoConnection();
             hideProgress();

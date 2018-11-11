@@ -22,6 +22,7 @@ public class MainViewModel extends ViewModel {
     private MutableLiveData<Boolean> errorLiveData;
     private String nextPage;
     private boolean isConnected;
+
     private final RequestListener fetchListener = new RequestListener() {
         @Override
         public void onComplete(VKResponse response) {

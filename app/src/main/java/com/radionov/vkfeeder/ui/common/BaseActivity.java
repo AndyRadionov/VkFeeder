@@ -52,6 +52,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         VkFeederApp.from(this).getAppComponent().inject(this);
         vkAccessTokenTracker.startTracking();
+        if (!VKSdk.isLoggedIn()) {
+            performLogin();
+        } else {
+            initViewModel();
+        }
     }
 
     @Override
@@ -60,11 +65,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         final IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(networkStatusReceiver, intentFilter);
-        if (!VKSdk.isLoggedIn()) {
-            performLogin();
-        } else {
-            initViewModel();
-        }
     }
 
     @Override

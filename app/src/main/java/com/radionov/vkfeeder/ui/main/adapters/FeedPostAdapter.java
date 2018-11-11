@@ -119,7 +119,7 @@ public class FeedPostAdapter extends RecyclerView.Adapter<FeedPostAdapter.FeedPo
             setPhotos(feedPost);
 
             postText.setText(feedPost.getText());
-            //todo postText.setOnClickListener(this);
+            postText.setOnClickListener(this);
         }
 
         private void setAuthorName(String name) {
@@ -185,6 +185,8 @@ public class FeedPostAdapter extends RecyclerView.Adapter<FeedPostAdapter.FeedPo
                     if (currentPage == photoPager.getAdapter().getCount()) return;
                     photoPager.setCurrentItem(++currentPage);
                     break;
+                } case R.id.post_text: {
+                    System.out.println();
                 }
             }
 //            ConstraintLayout layout = itemView.findViewById(R.id.card_layout);
