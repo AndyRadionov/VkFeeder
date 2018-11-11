@@ -27,43 +27,9 @@ public class MainActivity extends BaseActivity {
     private FeedPostAdapter feedPostAdapter;
     private CardStackLayoutManager manager;
 
-    private CardStackListener cardStackListener = new CardStackListener() {
-        @Override
-        public void onCardDragging(Direction direction, float ratio) {/*NOP*/}
-
-        @Override
-        public void onCardSwiped(Direction direction) {
-            VkFeedPost topPost = feedPostAdapter.getTopElement();
-
-            if (direction == Direction.Left) {
-                //todo
-//                mainViewModel.like(topPost);
-            } else {
-//                mainViewModel.skip(topPost);
-            }
-            if (manager.getTopPosition() >= feedPostAdapter.getItemCount() - VISIBLE_THRESHOLD) {
-                mainViewModel.loadMore();
-            }
-        }
-
-        @Override
-        public void onCardRewound() {/*NOP*/}
-
-        @Override
-        public void onCardCanceled() {/*NOP*/}
-    };
-
-    private SwipeAnimationSetting swipeLeftSetting = new SwipeAnimationSetting.Builder()
-            .setDirection(Direction.Left)
-            .setDuration(200)
-            .setInterpolator(new AccelerateInterpolator())
-            .build();
-
-    private SwipeAnimationSetting swipeRightSetting = new SwipeAnimationSetting.Builder()
-            .setDirection(Direction.Right)
-            .setDuration(200)
-            .setInterpolator(new AccelerateInterpolator())
-            .build();
+    private CardStackListener cardStackListener = initCardListener();
+    private SwipeAnimationSetting swipeLeftSetting = initLeftSwipeSettings();
+    private SwipeAnimationSetting swipeRightSetting = initRightSwipeSettings();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,5 +85,49 @@ public class MainActivity extends BaseActivity {
 
         feedContainer.setLayoutManager(manager);
         feedContainer.setAdapter(feedPostAdapter);
+    }
+
+    private SwipeAnimationSetting initLeftSwipeSettings() {
+        return new SwipeAnimationSetting.Builder()
+                .setDirection(Direction.Left)
+                .setDuration(200)
+                .setInterpolator(new AccelerateInterpolator())
+                .build();
+    }
+
+    private SwipeAnimationSetting initRightSwipeSettings() {
+        return new SwipeAnimationSetting.Builder()
+                .setDirection(Direction.Right)
+                .setDuration(200)
+                .setInterpolator(new AccelerateInterpolator())
+                .build();
+    }
+
+    private CardStackListener initCardListener() {
+        return new CardStackListener() {
+            @Override
+            public void onCardSwiped(Direction direction) {
+                VkFeedPost topPost = feedPostAdapter.getTopElement();
+
+                if (direction == Direction.Left) {
+                    //todo
+                    //                mainViewModel.like(topPost);
+                } else {
+                    //                mainViewModel.skip(topPost);
+                }
+                if (manager.getTopPosition() >= feedPostAdapter.getItemCount() - VISIBLE_THRESHOLD) {
+                    mainViewModel.loadMore();
+                }
+            }
+
+            @Override
+            public void onCardDragging(Direction direction, float ratio) {/*NOP*/}
+
+            @Override
+            public void onCardRewound() {/*NOP*/}
+
+            @Override
+            public void onCardCanceled() {/*NOP*/}
+        };
     }
 }
