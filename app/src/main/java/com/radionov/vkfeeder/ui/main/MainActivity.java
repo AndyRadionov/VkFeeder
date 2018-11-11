@@ -4,6 +4,8 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
+import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.radionov.vkfeeder.R;
 import com.radionov.vkfeeder.data.entities.VkFeedPost;
@@ -27,6 +29,9 @@ public class MainActivity extends BaseActivity {
     private FeedPostAdapter feedPostAdapter;
     private CardStackLayoutManager manager;
 
+    private Button loadButton;
+    private ProgressBar loadBar;
+
     private CardStackListener cardStackListener = initCardListener();
     private SwipeAnimationSetting swipeLeftSetting = initLeftSwipeSettings();
     private SwipeAnimationSetting swipeRightSetting = initRightSwipeSettings();
@@ -36,8 +41,9 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initFabListener();
-        initCardsView();
+        initViews();
+        initViewListener();
+        initCards();
     }
 
     @Override
@@ -50,6 +56,7 @@ public class MainActivity extends BaseActivity {
                 .observe(this, feedPosts -> {
                     if (feedPosts != null && !feedPosts.isEmpty()) {
                         feedPostAdapter.updateData(feedPosts);
+                        hideProgress();
                     }
                 });
 
@@ -62,10 +69,14 @@ public class MainActivity extends BaseActivity {
         mainViewModel.onNetworkChange(isConnected);
         if (!isConnected) {
             showNoConnection();
+            hideProgress();
+            loadButton.setEnabled(false);
+        } else {
+            showProgress();
         }
     }
 
-    private void initFabListener() {
+    private void initViewListener() {
         View fabSkip = findViewById(R.id.fab_skip);
         View fabLike = findViewById(R.id.fab_like);
         fabSkip.setOnClickListener(v -> {
@@ -77,10 +88,20 @@ public class MainActivity extends BaseActivity {
             manager.setSwipeAnimationSetting(swipeRightSetting);
             feedContainer.swipe();
         });
+
+        loadButton.setOnClickListener(v -> {
+            mainViewModel.loadMore();
+            showProgress();
+        });
     }
 
-    private void initCardsView() {
+    private void initViews() {
         feedContainer = findViewById(R.id.feed_container);
+        loadButton = findViewById(R.id.btn_load);
+        loadBar = findViewById(R.id.pb_load);
+    }
+
+    private void initCards() {
         feedPostAdapter = new FeedPostAdapter(this);
 
         manager = new CardStackLayoutManager(this, cardStackListener);
@@ -137,5 +158,17 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onCardCanceled() {/*NOP*/}
         };
+    }
+
+    private void showProgress() {
+        loadButton.setText("");
+        loadButton.setEnabled(false);
+        loadBar.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgress() {
+        loadButton.setText(getString(R.string.load_more));
+        loadButton.setEnabled(true);
+        loadBar.setVisibility(View.INVISIBLE);
     }
 }

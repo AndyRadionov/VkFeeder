@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,12 +12,38 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/new_posts_not_found"
+        android:textColor="@color/empty_msg_color"
         android:textSize="@dimen/empty_msg" />
+
+    <Button
+        android:id="@+id/btn_load"
+        android:layout_width="@dimen/load_btn_width"
+        android:layout_height="@dimen/load_btn_height"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/load_margin_top"
+        android:background="@android:color/white"
+        android:enabled="false"
+        android:padding="@dimen/btn_padding"
+        android:text="@string/load_more"
+        android:textColor="@color/empty_msg_color"
+        android:textSize="@dimen/empty_msg" />
+
+    <ProgressBar
+        android:id="@+id/pb_load"
+        android:layout_width="@dimen/progress_size"
+        android:layout_height="@dimen/progress_size"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/load_margin_top"
+        android:elevation="4dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/empty_msg_color"
+        android:indeterminateTintMode="src_atop" />
 
     <com.yuyakaido.android.cardstackview.CardStackView
         android:id="@+id/feed_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:elevation="4dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_like"

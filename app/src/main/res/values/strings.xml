@@ -11,4 +11,5 @@
     <string name="operation_error">Can\'t perform operation!</string>
     <string name="new_posts_not_found">New posts not found</string>
     <string name="no_internet">No Internet Connection!</string>
+    <string name="load_more">Load More</string>
 </resources>

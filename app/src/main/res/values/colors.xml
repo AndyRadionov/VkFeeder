@@ -6,4 +6,5 @@
 
     <color name="gray">#eeeeee</color>
     <color name="image_bg">#e5ecf3</color>
+    <color name="empty_msg_color">#8A929C</color>
 </resources>

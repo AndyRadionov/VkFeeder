@@ -4,6 +4,10 @@
     <dimen name="post_margin">12dp</dimen>
     <dimen name="tabs_margin">8dp</dimen>
     <dimen name="overlay_offset">24dp</dimen>
+    <dimen name="fab_margin">36dp</dimen>
+    <dimen name="fab_bottom_margin">16dp</dimen>
+    <dimen name="load_margin_top">64dp</dimen>
+    <dimen name="btn_padding">8dp</dimen>
 
     <!--Sizes-->
     <dimen name="avatar_size">36dp</dimen>
@@ -14,6 +18,7 @@
     <dimen name="tabs_height">32dp</dimen>
     <dimen name="viewpager_height">340dp</dimen>
     <dimen name="empty_msg">18dp</dimen>
-    <dimen name="fab_margin">36dp</dimen>
-    <dimen name="fab_bottom_margin">16dp</dimen>
+    <dimen name="load_btn_width">120dp</dimen>
+    <dimen name="load_btn_height">40dp</dimen>
+    <dimen name="progress_size">40dp</dimen>
 </resources>
