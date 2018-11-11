@@ -33,10 +33,10 @@ import java.util.Locale;
  * @author Andrey Radionov
  */
 public class FeedPostAdapter extends RecyclerView.Adapter<FeedPostAdapter.FeedPostViewHolder> {
-    private List<VkFeedPost> posts = new ArrayList<>();
-    private DateFormat dateFormat;
-    private DateFormat todayFormat;
-    private Transformation transformation = new RoundedTransformationBuilder()
+    private final List<VkFeedPost> posts = new ArrayList<>();
+    private final DateFormat dateFormat;
+    private final DateFormat todayFormat;
+    private final Transformation transformation = new RoundedTransformationBuilder()
             .cornerRadiusDp(30)
             .oval(false)
             .build();
@@ -79,16 +79,17 @@ public class FeedPostAdapter extends RecyclerView.Adapter<FeedPostAdapter.FeedPo
     class FeedPostViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener {
 
-        private TextView authorName;
-        private ImageView authorPhoto;
-        private TextView dateView;
-        private TextView postText;
+        private final TextView authorName;
+        private final ImageView authorPhoto;
+        private final TextView dateView;
+        private final TextView postText;
+        private final TextView btnMore;
 
-        private TabLayout tabLayout;
-        private ViewPager photoPager;
+        private final TabLayout tabLayout;
+        private final ViewPager photoPager;
 
-        private View prevPage;
-        private View nextPage;
+        private final View prevPage;
+        private final View nextPage;
 
         private FeedPostViewHolder(View itemView) {
             super(itemView);
@@ -97,6 +98,7 @@ public class FeedPostAdapter extends RecyclerView.Adapter<FeedPostAdapter.FeedPo
             authorPhoto = itemView.findViewById(R.id.author_photo);
             dateView = itemView.findViewById(R.id.date);
             postText = itemView.findViewById(R.id.post_text);
+            btnMore = itemView.findViewById(R.id.btn_more);
 
             tabLayout = itemView.findViewById(R.id.tab_indicator);
             photoPager = itemView.findViewById(R.id.photo_pager);
@@ -108,6 +110,15 @@ public class FeedPostAdapter extends RecyclerView.Adapter<FeedPostAdapter.FeedPo
         private void bind(int position) {
             final VkFeedPost feedPost = posts.get(position);
 
+            postText.setText(feedPost.getText());
+            postText.setMaxLines(5);
+            if (feedPost.getText().length() > 200) {
+                btnMore.setVisibility(View.VISIBLE);
+                btnMore.setOnClickListener(this);
+            } else {
+                btnMore.setVisibility(View.GONE);
+            }
+
             Picasso.get()
                     .load(feedPost.getFeedAuthor().getPhoto())
                     .fit()
@@ -117,9 +128,6 @@ public class FeedPostAdapter extends RecyclerView.Adapter<FeedPostAdapter.FeedPo
             setAuthorName(feedPost.getFeedAuthor().getName());
             setDate(feedPost.getDate());
             setPhotos(feedPost);
-
-            postText.setText(feedPost.getText());
-            postText.setOnClickListener(this);
         }
 
         private void setAuthorName(String name) {
@@ -185,14 +193,11 @@ public class FeedPostAdapter extends RecyclerView.Adapter<FeedPostAdapter.FeedPo
                     if (currentPage == photoPager.getAdapter().getCount()) return;
                     photoPager.setCurrentItem(++currentPage);
                     break;
-                } case R.id.post_text: {
-                    System.out.println();
+                } case R.id.btn_more: {
+                    btnMore.setVisibility(View.GONE);
+                    postText.setMaxLines(Integer.MAX_VALUE);
                 }
             }
-//            ConstraintLayout layout = itemView.findViewById(R.id.card_layout);
-//            layout.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
-//           // layout.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-//            itemView.requestLayout();
         }
     }
 }
