@@ -110,21 +110,21 @@ public class FeedPostAdapter extends RecyclerView.Adapter<FeedPostAdapter.FeedPo
             final VkFeedPost feedPost = posts.get(position);
 
             Picasso.get()
-                    .load(feedPost.feedAuthor.getPhoto())
+                    .load(feedPost.getFeedAuthor().getPhoto())
                     .fit()
                     .transform(transformation)
                     .into(authorPhoto);
 
-            setAuthorName(feedPost.feedAuthor.getName());
-            setDate(feedPost.date);
+            setAuthorName(feedPost.getFeedAuthor().getName());
+            setDate(feedPost.getDate());
 
-            postText.setText(feedPost.text);
+            postText.setText(feedPost.getText());
             postText.setOnClickListener(this);
 
-            if (feedPost.attachments != null) {
+            if (feedPost.getAttachments() != null) {
                 List<VKApiPhotoSize> photoSizes = new ArrayList<>();
-                for (int i = 0; i < feedPost.attachments.size(); i++) {
-                    VKAttachments.VKApiAttachment attachment = feedPost.attachments.get(i);
+                for (int i = 0; i < feedPost.getAttachments().size(); i++) {
+                    VKAttachments.VKApiAttachment attachment = feedPost.getAttachments().get(i);
                     if (attachment.getType().equals(VKAttachments.TYPE_PHOTO)) {
                         VKApiPhoto photo = (VKApiPhoto) attachment;
                         VKApiPhotoSize photoSize = photo.src.get(photo.src.getCount() - 1);

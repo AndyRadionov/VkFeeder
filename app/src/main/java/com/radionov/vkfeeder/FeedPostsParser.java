@@ -78,7 +78,7 @@ public class FeedPostsParser {
                 for (int i = 0; i < itemsJson.length(); i++) {
                     try {
                         VkFeedPost post = new VkFeedPost(itemsJson.getJSONObject(i));
-                        post.feedAuthor = authors.get(post.source_id);
+                        post.setFeedAuthor(authors.get(post.getSourceId()));
                         result.add(post);
                     } catch (Exception e) {
                         if (VKSdk.DEBUG)

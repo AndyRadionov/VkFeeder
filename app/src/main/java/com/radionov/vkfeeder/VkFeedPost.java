@@ -13,19 +13,13 @@ import org.json.JSONObject;
  */
 public class VkFeedPost extends VKAttachments.VKApiAttachment implements Identifiable, android.os.Parcelable {
 
-    public String type;
-
-    public int source_id;
-
-    public long date;
-
-    public int post_id;
-
-    public String text;
-
-    public VkFeedAuthor feedAuthor;
-
-    public VKAttachments attachments = new VKAttachments();
+    private String type;
+    private int sourceId;
+    private long date;
+    private int postId;
+    private String text;
+    private VkFeedAuthor feedAuthor;
+    private VKAttachments attachments = new VKAttachments();
 
     public VkFeedPost(JSONObject from) throws JSONException {
         parse(from);
@@ -34,9 +28,9 @@ public class VkFeedPost extends VKAttachments.VKApiAttachment implements Identif
 
     protected VkFeedPost(Parcel in) {
         type = in.readString();
-        source_id = in.readInt();
+        sourceId = in.readInt();
         date = in.readLong();
-        post_id = in.readInt();
+        postId = in.readInt();
         text = in.readString();
         feedAuthor = in.readParcelable(VkFeedAuthor.class.getClassLoader());
         attachments = in.readParcelable(VKAttachments.class.getClassLoader());
@@ -45,9 +39,9 @@ public class VkFeedPost extends VKAttachments.VKApiAttachment implements Identif
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(type);
-        dest.writeInt(source_id);
+        dest.writeInt(sourceId);
         dest.writeLong(date);
-        dest.writeInt(post_id);
+        dest.writeInt(postId);
         dest.writeString(text);
         dest.writeParcelable(feedAuthor, flags);
         dest.writeParcelable(attachments, flags);
@@ -72,9 +66,9 @@ public class VkFeedPost extends VKAttachments.VKApiAttachment implements Identif
 
     public VkFeedPost parse(JSONObject source) throws JSONException {
         type = source.getString("type");
-        source_id = source.optInt("source_id");
+        sourceId = source.optInt("source_id");
         date = source.optLong("date");
-        post_id = source.optInt("post_id");
+        postId = source.optInt("post_id");
         text = source.optString("text");
 
         attachments.fill(source.optJSONArray("attachments"));
@@ -83,16 +77,68 @@ public class VkFeedPost extends VKAttachments.VKApiAttachment implements Identif
 
     @Override
     public int getId() {
-        return post_id;
+        return postId;
     }
 
     @Override
     public CharSequence toAttachmentString() {
-        return new StringBuilder(VKAttachments.TYPE_POST).append(source_id).append('_').append(post_id);
+        return new StringBuilder(VKAttachments.TYPE_POST).append(sourceId).append('_').append(postId);
     }
 
     @Override
     public String getType() {
         return VKAttachments.TYPE_POST;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getSourceId() {
+        return sourceId;
+    }
+
+    public void setSourceId(int sourceId) {
+        this.sourceId = sourceId;
+    }
+
+    public long getDate() {
+        return date;
+    }
+
+    public void setDate(long date) {
+        this.date = date;
+    }
+
+    public int getPostId() {
+        return postId;
+    }
+
+    public void setPostId(int postId) {
+        this.postId = postId;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public VkFeedAuthor getFeedAuthor() {
+        return feedAuthor;
+    }
+
+    public void setFeedAuthor(VkFeedAuthor feedAuthor) {
+        this.feedAuthor = feedAuthor;
+    }
+
+    public VKAttachments getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(VKAttachments attachments) {
+        this.attachments = attachments;
     }
 }

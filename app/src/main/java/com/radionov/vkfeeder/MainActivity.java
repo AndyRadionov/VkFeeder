@@ -19,7 +19,6 @@ import com.vk.sdk.api.VKError;
 import com.vk.sdk.api.VKParameters;
 import com.vk.sdk.api.VKRequest;
 import com.vk.sdk.api.VKResponse;
-import com.vk.sdk.api.model.VKList;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackListener;
 import com.yuyakaido.android.cardstackview.CardStackView;
@@ -27,9 +26,7 @@ import com.yuyakaido.android.cardstackview.Direction;
 import com.yuyakaido.android.cardstackview.StackFrom;
 import com.yuyakaido.android.cardstackview.SwipeAnimationSetting;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -151,8 +148,8 @@ public class MainActivity extends AppCompatActivity {
     private void like(VkFeedPost feedPost) {
         VKParameters parameters = VKParameters.from(
                 "type", "post",
-                "owner_id", feedPost.source_id,
-                "item_id", feedPost.post_id);
+                "owner_id", feedPost.getSourceId(),
+                "item_id", feedPost.getPostId());
 
         VKRequest request = new VKRequest("likes.add",
                 parameters);
@@ -185,8 +182,8 @@ public class MainActivity extends AppCompatActivity {
     private void skip(VkFeedPost feedPost) {
         VKParameters parameters = VKParameters.from(
                 "type", "wall",
-                "owner_id", feedPost.source_id,
-                "item_id", feedPost.post_id);
+                "owner_id", feedPost.getSourceId(),
+                "item_id", feedPost.getPostId());
 
         VKRequest request = new VKRequest("newsfeed.ignoreItem",
                 parameters);
