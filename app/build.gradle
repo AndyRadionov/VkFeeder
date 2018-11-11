@@ -18,23 +18,45 @@ android {
     }
 }
 
+ext.versions = [ANDROID_SUPPORT  : "28.0.0",
+                CONSTRAINT_LAYOUT: "1.1.3",
+                LIFECYCLE        : "1.1.1",
+                VK_SDK           : "1.6.9",
+                PICASSO          : "2.71828",
+                ROUND_IMAGE      : "2.3.0",
+                STACK_CARDS      : "2.0.0",
+                DAGGER           : "2.16",
+                DAGGER_SUPPORT   : "2.17",
+                MOXY             : "1.5.5",]
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support:exifinterface:28.0.0'
-    implementation 'com.android.support:support-v4:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    implementation "com.android.support:appcompat-v7:$versions.ANDROID_SUPPORT"
+    implementation "com.android.support:exifinterface:$versions.ANDROID_SUPPORT"
+    implementation "com.android.support:support-v4:$versions.ANDROID_SUPPORT"
+    implementation "com.android.support:cardview-v7:$versions.ANDROID_SUPPORT"
+    implementation "com.android.support:design:$versions.ANDROID_SUPPORT"
+    implementation "com.android.support:recyclerview-v7:$versions.ANDROID_SUPPORT"
+    implementation "com.android.support.constraint:constraint-layout:$versions.CONSTRAINT_LAYOUT"
 
-    implementation "com.android.support:cardview-v7:28.0.0"
-    implementation "com.android.support:design:28.0.0"
-    implementation "com.android.support:recyclerview-v7:28.0.0"
+    //Arch Components
+    implementation "android.arch.lifecycle:extensions:$versions.LIFECYCLE"
 
-    implementation 'com.vk:androidsdk:1.6.9'
+    //Vk
+    implementation "com.vk:androidsdk:$versions.VK_SDK"
 
-    implementation "com.squareup.picasso:picasso:2.71828"
-    implementation 'com.makeramen:roundedimageview:2.3.0'
-    implementation "com.yuyakaido.android:card-stack-view:2.0.0"
+    //Images
+    implementation "com.squareup.picasso:picasso:$versions.PICASSO"
+    implementation "com.makeramen:roundedimageview:$versions.ROUND_IMAGE"
 
+    //Stack cards
+    implementation "com.yuyakaido.android:card-stack-view:$versions.STACK_CARDS"
+
+    //Di Dagger
+    implementation "com.google.dagger:dagger:$versions.DAGGER"
+    annotationProcessor "com.google.dagger:dagger-compiler:$versions.DAGGER"
+
+    //Tests
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
