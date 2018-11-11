@@ -1,4 +1,4 @@
-package com.radionov.vkfeeder;
+package com.radionov.vkfeeder.data.entities;
 
 import android.os.Parcel;
 

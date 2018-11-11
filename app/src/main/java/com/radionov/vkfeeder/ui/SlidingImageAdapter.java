@@ -1,4 +1,4 @@
-package com.radionov.vkfeeder;
+package com.radionov.vkfeeder.ui;
 
 import android.content.Context;
 import android.os.Parcelable;

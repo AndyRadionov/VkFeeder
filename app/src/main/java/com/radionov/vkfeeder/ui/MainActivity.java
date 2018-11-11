@@ -1,4 +1,4 @@
-package com.radionov.vkfeeder;
+package com.radionov.vkfeeder.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,6 +10,9 @@ import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Toast;
 
+import com.radionov.vkfeeder.utils.FeedPostsParser;
+import com.radionov.vkfeeder.R;
+import com.radionov.vkfeeder.data.entities.VkFeedPost;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKCallback;
 import com.vk.sdk.VKScope;

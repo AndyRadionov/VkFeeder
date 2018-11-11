@@ -1,4 +1,4 @@
-package com.radionov.vkfeeder;
+package com.radionov.vkfeeder.ui;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.makeramen.roundedimageview.RoundedTransformationBuilder;
+import com.radionov.vkfeeder.R;
+import com.radionov.vkfeeder.data.entities.VkFeedPost;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 import com.vk.sdk.api.model.VKApiPhoto;

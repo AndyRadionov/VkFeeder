@@ -1,7 +1,9 @@
-package com.radionov.vkfeeder;
+package com.radionov.vkfeeder.utils;
 
 import android.util.Log;
 
+import com.radionov.vkfeeder.data.entities.VkFeedAuthor;
+import com.radionov.vkfeeder.data.entities.VkFeedPost;
 import com.vk.sdk.VKSdk;
 import com.vk.sdk.api.model.VKApiCommunity;
 import com.vk.sdk.api.model.VKApiUser;
