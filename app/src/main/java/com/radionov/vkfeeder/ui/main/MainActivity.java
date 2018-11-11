@@ -32,9 +32,9 @@ public class MainActivity extends BaseActivity {
     private Button loadButton;
     private ProgressBar loadBar;
 
-    private CardStackListener cardStackListener = initCardListener();
-    private SwipeAnimationSetting swipeLeftSetting = initLeftSwipeSettings();
-    private SwipeAnimationSetting swipeRightSetting = initRightSwipeSettings();
+    private final CardStackListener cardStackListener = initCardListener();
+    private final SwipeAnimationSetting swipeLeftSetting = initLeftSwipeSettings();
+    private final SwipeAnimationSetting swipeRightSetting = initRightSwipeSettings();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -5,8 +5,6 @@ import android.content.Context;
 
 import com.radionov.vkfeeder.di.AppComponent;
 import com.radionov.vkfeeder.di.DaggerAppComponent;
-import com.vk.sdk.VKAccessToken;
-import com.vk.sdk.VKAccessTokenTracker;
 import com.vk.sdk.VKSdk;
 
 /**

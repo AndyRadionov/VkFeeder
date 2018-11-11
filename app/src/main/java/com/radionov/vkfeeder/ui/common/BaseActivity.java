@@ -31,7 +31,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Inject
     protected ViewModelProvider.Factory viewModelFactory;
-    private VKAccessTokenTracker vkAccessTokenTracker = new VKAccessTokenTracker() {
+    private final VKAccessTokenTracker vkAccessTokenTracker = new VKAccessTokenTracker() {
         @Override
         public void onVKAccessTokenChanged(VKAccessToken oldToken, VKAccessToken newToken) {
             if (newToken == null) {
@@ -40,7 +40,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     };
 
-    private BroadcastReceiver networkStatusReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver networkStatusReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             onNetworkChange(NetworkUtils.isInternetAvailable(BaseActivity.this));
@@ -91,10 +91,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    protected void performLogin() {
-        VKSdk.login(this, VKScope.WALL);
-    }
-
     protected void showError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
@@ -108,4 +104,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void initViewModel();
 
     protected abstract void onNetworkChange(boolean isConnected);
+
+    private void performLogin() {
+        VKSdk.login(this, VKScope.WALL);
+    }
 }

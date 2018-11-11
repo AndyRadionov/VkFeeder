@@ -18,8 +18,8 @@ import java.util.List;
 public class MainViewModel extends ViewModel {
 
     private final FeedRepository feedRepository;
-    private MutableLiveData<List<VkFeedPost>> feedLiveData;
-    private MutableLiveData<Boolean> errorLiveData;
+    private final MutableLiveData<List<VkFeedPost>> feedLiveData;
+    private final MutableLiveData<Boolean> errorLiveData;
     private String nextPage;
     private boolean isConnected;
 

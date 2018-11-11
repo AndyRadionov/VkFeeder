@@ -2,7 +2,6 @@ package com.radionov.vkfeeder.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
-import android.support.v4.net.ConnectivityManagerCompat;
 
 /**
  * @author Andrey Radionov

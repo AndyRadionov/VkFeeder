@@ -1,6 +1,7 @@
 package com.radionov.vkfeeder.utils;
 
 import android.util.Log;
+import android.util.SparseArray;
 
 import com.radionov.vkfeeder.data.entities.VkFeedAuthor;
 import com.radionov.vkfeeder.data.entities.VkFeedPost;
@@ -33,7 +34,7 @@ public class FeedPostsParser {
             try {
                 return response.optJSONObject("response").getString("next_from");
             } catch (JSONException e) {
-                Log.d(TAG, "parseNextPage: " + e);;
+                Log.d(TAG, "parseNextPage: " + e);
             }
         }
         return EMPTY_STRING;
@@ -49,7 +50,7 @@ public class FeedPostsParser {
             JSONArray usersJson = source.optJSONArray("profiles");
             JSONArray groupsJson = source.optJSONArray("groups");
 
-            Map<Integer, VkFeedAuthor> authors = new HashMap<>();
+            SparseArray<VkFeedAuthor> authors = new SparseArray<>();
             if (usersJson != null && usersJson.length() > 0) {
                 for (int i = 0; i < usersJson.length(); i++) {
                     try {

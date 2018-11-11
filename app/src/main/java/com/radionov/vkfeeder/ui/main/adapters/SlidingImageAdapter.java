@@ -17,9 +17,8 @@ import java.util.List;
  * @author Andrey Radionov
  */
 public class SlidingImageAdapter extends PagerAdapter {
-    private List<VKApiPhotoSize> images;
-    private Context context;
-
+    private final List<VKApiPhotoSize> images;
+    private final Context context;
 
     public SlidingImageAdapter(Context context, List<VKApiPhotoSize> images) {
         this.context = context;
