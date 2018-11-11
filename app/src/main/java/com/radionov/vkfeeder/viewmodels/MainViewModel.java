@@ -21,6 +21,7 @@ public class MainViewModel extends ViewModel {
     private MutableLiveData<List<VkFeedPost>> feedLiveData;
     private MutableLiveData<Boolean> errorLiveData;
     private String nextPage;
+    private boolean isConnected;
     private final RequestListener fetchListener = new RequestListener() {
         @Override
         public void onComplete(VKResponse response) {
@@ -41,7 +42,6 @@ public class MainViewModel extends ViewModel {
         feedRepository = repository;
         feedLiveData = new MutableLiveData<>();
         errorLiveData = new MutableLiveData<>();
-        feedRepository.fetchFeed(fetchListener, nextPage);
     }
 
     public MutableLiveData<List<VkFeedPost>> getFeedLiveData() {
@@ -53,14 +53,25 @@ public class MainViewModel extends ViewModel {
     }
 
     public void loadMore() {
-        feedRepository.fetchFeed(fetchListener, nextPage);
+        if (isConnected) {
+            feedRepository.fetchFeed(fetchListener, nextPage);
+        }
     }
 
     public void like(VkFeedPost feedPost) {
-        feedRepository.like(actionListener, feedPost);
+        if (isConnected) {
+            feedRepository.like(actionListener, feedPost);
+        }
     }
 
     public void skip(VkFeedPost feedPost) {
-        feedRepository.like(actionListener, feedPost);
+        if (isConnected) {
+            feedRepository.like(actionListener, feedPost);
+        }
+    }
+
+    public void onNetworkChange(boolean isConnected) {
+        this.isConnected = isConnected;
+        loadMore();
     }
 }

@@ -10,4 +10,5 @@
     <string name="login_error">Can\'t login. Try again!</string>
     <string name="operation_error">Can\'t perform operation!</string>
     <string name="new_posts_not_found">New posts not found</string>
+    <string name="no_internet">No Internet Connection!</string>
 </resources>

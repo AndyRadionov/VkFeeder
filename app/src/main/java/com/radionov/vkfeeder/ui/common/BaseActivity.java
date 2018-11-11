@@ -1,14 +1,20 @@
 package com.radionov.vkfeeder.ui.common;
 
 import android.arch.lifecycle.ViewModelProvider;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.radionov.vkfeeder.R;
 import com.radionov.vkfeeder.VkFeederApp;
+import com.radionov.vkfeeder.utils.NetworkUtils;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKAccessTokenTracker;
 import com.vk.sdk.VKCallback;
@@ -23,7 +29,6 @@ import javax.inject.Inject;
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
-
     @Inject
     protected ViewModelProvider.Factory viewModelFactory;
     private VKAccessTokenTracker vkAccessTokenTracker = new VKAccessTokenTracker() {
@@ -35,17 +40,37 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     };
 
+    private BroadcastReceiver networkStatusReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            onNetworkChange(NetworkUtils.isInternetAvailable(BaseActivity.this));
+        }
+    };
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         VkFeederApp.from(this).getAppComponent().inject(this);
         vkAccessTokenTracker.startTracking();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        final IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkStatusReceiver, intentFilter);
         if (!VKSdk.isLoggedIn()) {
             performLogin();
         } else {
             initViewModel();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(networkStatusReceiver);
     }
 
     @Override
@@ -74,5 +99,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+    protected void showNoConnection() {
+        Snackbar.make(findViewById(android.R.id.content),
+                R.string.no_internet, Snackbar.LENGTH_LONG)
+                .show();
+    }
+
     protected abstract void initViewModel();
+
+    protected abstract void onNetworkChange(boolean isConnected);
 }

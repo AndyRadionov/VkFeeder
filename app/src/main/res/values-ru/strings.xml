@@ -9,4 +9,5 @@
     <string name="login_error">Не получилось войти. Попробуйте снова!</string>
     <string name="operation_error">Не удалось выполнить операцию!</string>
     <string name="new_posts_not_found">Лента новостей пуста</string>
+    <string name="no_internet">Нет интернет соединения!</string>
 </resources>

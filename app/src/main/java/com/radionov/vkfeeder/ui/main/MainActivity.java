@@ -57,6 +57,14 @@ public class MainActivity extends BaseActivity {
                 .observe(this, error -> showError(getString(R.string.operation_error)));
     }
 
+    @Override
+    protected void onNetworkChange(boolean isConnected) {
+        mainViewModel.onNetworkChange(isConnected);
+        if (!isConnected) {
+            showNoConnection();
+        }
+    }
+
     private void initFabListener() {
         View fabSkip = findViewById(R.id.fab_skip);
         View fabLike = findViewById(R.id.fab_like);
