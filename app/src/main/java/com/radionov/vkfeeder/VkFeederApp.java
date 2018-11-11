@@ -1,7 +1,10 @@
 package com.radionov.vkfeeder;
 
 import android.app.Application;
+import android.content.Context;
 
+import com.radionov.vkfeeder.di.AppComponent;
+import com.radionov.vkfeeder.di.DaggerAppComponent;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKAccessTokenTracker;
 import com.vk.sdk.VKSdk;
@@ -11,18 +14,20 @@ import com.vk.sdk.VKSdk;
  */
 public class VkFeederApp extends Application {
 
-    VKAccessTokenTracker vkAccessTokenTracker = new VKAccessTokenTracker() {
-        @Override
-        public void onVKAccessTokenChanged(VKAccessToken oldToken, VKAccessToken newToken) {
-            if (newToken == null) {
-// VKAccessToken is invalid
-            }
-        }
-    };
+    private AppComponent appComponent;
+
+    public static VkFeederApp from(Context context) {
+        return (VkFeederApp) context.getApplicationContext();
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
-        vkAccessTokenTracker.startTracking();
         VKSdk.initialize(this);
+        appComponent = DaggerAppComponent.create();
+    }
+
+    public AppComponent getAppComponent() {
+        return appComponent;
     }
 }

@@ -6,4 +6,6 @@
 
     <string name="skip_title">SKIP</string>
     <string name="like_title">LIKE</string>
+    <string name="login_error">Can\'t login. Try again!</string>
+    <string name="operation_error">Can\'t perform operation!</string>
 </resources>
