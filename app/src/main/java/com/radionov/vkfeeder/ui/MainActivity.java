@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Toast;
 
+import com.radionov.vkfeeder.ui.adapters.FeedPostAdapter;
 import com.radionov.vkfeeder.utils.FeedPostsParser;
 import com.radionov.vkfeeder.R;
 import com.radionov.vkfeeder.data.entities.VkFeedPost;
@@ -79,22 +80,13 @@ public class MainActivity extends AppCompatActivity {
             .setInterpolator(new AccelerateInterpolator())
             .build();
 
-    public static void changeStatusBarColor(Activity act, int colorRes) {
-        act.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        act.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        act.getWindow().setStatusBarColor(ContextCompat.getColor(act, colorRes));
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        changeStatusBarColor(this, R.color.gray);
-
         feedContainer = findViewById(R.id.feed_container);
         feedPostAdapter = new FeedPostAdapter(this);
-
 
         manager = new CardStackLayoutManager(this, cardStackListener);
         manager.setStackFrom(StackFrom.None);

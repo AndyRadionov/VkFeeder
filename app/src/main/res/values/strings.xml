@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">VkFeederJava</string>
+    <string name="app_name" translatable="false">VkFeeder</string>
 
     <string name="date_format">dd MMM \'at\' HH:mm</string>
     <string name="today_format">\'Today\' \'at\' HH:mm</string>
+
+    <string name="skip_title">SKIP</string>
+    <string name="like_title">LIKE</string>
 </resources>

@@ -1,67 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="12dp"
-    android:scrollbars="none">
+    android:layout_margin="@dimen/post_margin"
+    android:scrollbars="none"
+    tools:ignore="SpUsage,RtlHardcoded">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        android:padding="12dp"
-        app:cardCornerRadius="12dp">
+        android:padding="@dimen/post_margin"
+        app:cardCornerRadius="@dimen/card_radius">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/card_layout"
             android:layout_width="match_parent"
-            android:layout_height="520dp">
+            android:layout_height="@dimen/card_height">
 
             <ImageView
                 android:id="@+id/author_photo"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_margin="12dp"
+                android:layout_width="@dimen/avatar_size"
+                android:layout_height="@dimen/avatar_size"
+                android:layout_margin="@dimen/post_margin"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:layout_marginLeft="12dp"
+                android:layout_marginLeft="@dimen/post_margin"
                 android:id="@+id/author_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/post_margin"
                 android:maxLines="1"
-                android:textSize="14dp"
+                android:textSize="@dimen/name_size"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toRightOf="@id/author_photo"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:layout_marginLeft="12dp"
+                android:layout_marginLeft="@dimen/post_margin"
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12dp"
+                android:textSize="@dimen/date_size"
                 app:layout_constraintLeft_toRightOf="@id/author_photo"
                 app:layout_constraintTop_toBottomOf="@id/author_name" />
 
             <android.support.v4.view.ViewPager
                 android:background="@color/image_bg"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/post_margin"
                 android:id="@+id/photo_pager"
                 android:layout_width="match_parent"
-                android:layout_height="340dp"
+                android:layout_height="@dimen/viewpager_height"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintLeft_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/author_photo" />
 
             <android.support.design.widget.TabLayout
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/tabs_margin"
                 android:id="@+id/tab_indicator"
                 android:layout_width="match_parent"
-                android:layout_height="32dp"
+                android:layout_height="@dimen/tabs_height"
                 app:tabBackground="@drawable/custom_indicator"
                 android:scaleY="-1"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -75,19 +77,18 @@
                 android:id="@+id/post_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:paddingBottom="12dp"
+                android:layout_margin="@dimen/post_margin"
+                android:paddingBottom="@dimen/post_margin"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/photo_pager" />
         </android.support.constraint.ConstraintLayout>
 
         <FrameLayout
-
             android:id="@+id/left_overlay"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginRight="24dp"
+            android:layout_marginRight="@dimen/overlay_offset"
             android:rotation="4">
 
             <TextView
@@ -95,19 +96,17 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|right"
                 android:background="@drawable/bg_button_skip_elevation16"
-                android:padding="24dp"
-                android:text="ПРОПУСТИТЬ"
+                android:padding="@dimen/overlay_offset"
+                android:text="@string/skip_title"
                 android:textAlignment="center"
                 android:textColor="@android:color/white" />
-
         </FrameLayout>
 
         <FrameLayout
-
             android:id="@+id/right_overlay"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="@dimen/overlay_offset"
             android:rotation="-4">
 
             <TextView
@@ -115,11 +114,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|left"
                 android:background="@drawable/bg_button_like_elevation16"
-                android:padding="24dp"
-                android:text="МНЕ НРАВИТСЯ"
+                android:padding="@dimen/overlay_offset"
+                android:text="@string/like_title"
                 android:textAlignment="center"
                 android:textColor="@android:color/white" />
-
         </FrameLayout>
     </android.support.v7.widget.CardView>
 </ScrollView>

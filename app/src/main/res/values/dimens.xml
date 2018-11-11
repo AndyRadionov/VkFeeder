@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Margins-->
+    <dimen name="post_margin">12dp</dimen>
+    <dimen name="tabs_margin">8dp</dimen>
+    <dimen name="overlay_offset">24dp</dimen>
+
+    <!--Sizes-->
+    <dimen name="avatar_size">36dp</dimen>
+    <dimen name="card_radius">12dp</dimen>
+    <dimen name="card_height">520dp</dimen>
+    <dimen name="name_size">14dp</dimen>
+    <dimen name="date_size">12dp</dimen>
+    <dimen name="tabs_height">32dp</dimen>
+    <dimen name="viewpager_height">340dp</dimen>
+</resources>
