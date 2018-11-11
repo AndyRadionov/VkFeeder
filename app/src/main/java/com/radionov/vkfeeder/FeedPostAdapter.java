@@ -40,8 +40,6 @@ public class FeedPostAdapter extends RecyclerView.Adapter<FeedPostAdapter.FeedPo
             .oval(false)
             .build();
 
-
-
     public FeedPostAdapter(Context context) {
         String dateFormatString = context.getString(R.string.date_format);
         String todayFormatString = context.getString(R.string.today_format);
@@ -95,15 +93,10 @@ public class FeedPostAdapter extends RecyclerView.Adapter<FeedPostAdapter.FeedPo
             authorName = itemView.findViewById(R.id.author_name);
             authorPhoto = itemView.findViewById(R.id.author_photo);
             dateView = itemView.findViewById(R.id.date);
-            //postPhoto = itemView.findViewById(R.id.post_photo);
             postText = itemView.findViewById(R.id.post_text);
 
             tabLayout = itemView.findViewById(R.id.tab_indicator);
             photoPager = itemView.findViewById(R.id.photo_pager);
-
-            //itemView.setOnClickListener(this);
-            //authorPhoto.setOnClickListener(this);
-//            postPhoto.setOnClickListener(this);
         }
 
         private void bind(int position) {
@@ -117,10 +110,27 @@ public class FeedPostAdapter extends RecyclerView.Adapter<FeedPostAdapter.FeedPo
 
             setAuthorName(feedPost.getFeedAuthor().getName());
             setDate(feedPost.getDate());
+            setPhotos(feedPost);
 
             postText.setText(feedPost.getText());
-            postText.setOnClickListener(this);
+            //todo postText.setOnClickListener(this);
+        }
 
+        private void setAuthorName(String name) {
+            if (name.length() > 30) name = name.substring(0, 30) + "...";
+            authorName.setText(name);
+        }
+
+        private void setDate(long unixDate) {
+            long date = unixDate * 1000;
+            if (DateUtils.isToday(date)) {
+                dateView.setText(todayFormat.format(new Date(date)));
+            } else {
+                dateView.setText(dateFormat.format(new Date(date)));
+            }
+        }
+
+        private void setPhotos(VkFeedPost feedPost) {
             if (feedPost.getAttachments() != null) {
                 List<VKApiPhotoSize> photoSizes = new ArrayList<>();
                 for (int i = 0; i < feedPost.getAttachments().size(); i++) {
@@ -149,20 +159,6 @@ public class FeedPostAdapter extends RecyclerView.Adapter<FeedPostAdapter.FeedPo
                     photoPager.setVisibility(View.GONE);
                     tabLayout.setVisibility(View.INVISIBLE);
                 }
-            }
-        }
-
-        private void setAuthorName(String name) {
-            if (name.length() > 30) name = name.substring(0, 30) + "...";
-            authorName.setText(name);
-        }
-
-        private void setDate(long unixDate) {
-            long date = unixDate * 1000;
-            if (DateUtils.isToday(date)) {
-                dateView.setText(todayFormat.format(new Date(date)));
-            } else {
-                dateView.setText(dateFormat.format(new Date(date)));
             }
         }
 
