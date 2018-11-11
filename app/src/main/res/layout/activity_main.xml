@@ -5,7 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.main.MainActivity"
+    tools:ignore="SpUsage">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/new_posts_not_found"
+        android:textSize="@dimen/empty_msg" />
 
     <com.yuyakaido.android.cardstackview.CardStackView
         android:id="@+id/feed_container"
@@ -14,21 +22,21 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_like"
-        android:background="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
-        android:src="@drawable/ic_like_36"
-        android:layout_marginLeft="36dp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_bottom_margin"
+        android:background="@android:color/white"
+        android:src="@drawable/ic_like_36" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_skip"
-        android:background="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
-        android:src="@drawable/ic_skip_36"
-        android:layout_marginRight="36dp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_marginBottom="@dimen/fab_bottom_margin"
+        android:background="@android:color/white"
+        android:src="@drawable/ic_skip_36" />
 </FrameLayout>

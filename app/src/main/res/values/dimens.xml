@@ -13,4 +13,7 @@
     <dimen name="date_size">12dp</dimen>
     <dimen name="tabs_height">32dp</dimen>
     <dimen name="viewpager_height">340dp</dimen>
+    <dimen name="empty_msg">18dp</dimen>
+    <dimen name="fab_margin">36dp</dimen>
+    <dimen name="fab_bottom_margin">16dp</dimen>
 </resources>

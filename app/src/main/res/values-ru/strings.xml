@@ -5,6 +5,8 @@
 
     <string name="skip_title">ПРОПУСТИТЬ</string>
     <string name="like_title">МНЕ НРАВИТСЯ</string>
-    <string name="login_error">Can\'t login. Try again!</string>
-    <string name="operation_error">Can\'t perform operation!</string>
+
+    <string name="login_error">Не получилось войти. Попробуйте снова!</string>
+    <string name="operation_error">Не удалось выполнить операцию!</string>
+    <string name="new_posts_not_found">Лента новостей пуста</string>
 </resources>

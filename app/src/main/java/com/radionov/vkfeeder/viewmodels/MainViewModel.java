@@ -40,6 +40,7 @@ public class MainViewModel extends ViewModel {
     public MainViewModel(FeedRepository repository) {
         feedRepository = repository;
         feedLiveData = new MutableLiveData<>();
+        errorLiveData = new MutableLiveData<>();
         feedRepository.fetchFeed(fetchListener, nextPage);
     }
 
