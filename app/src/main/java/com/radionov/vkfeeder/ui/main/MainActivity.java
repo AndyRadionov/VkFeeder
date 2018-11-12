@@ -141,10 +141,9 @@ public class MainActivity extends BaseActivity {
                 VkFeedPost topPost = feedPostAdapter.getTopElement();
 
                 if (direction == Direction.Left) {
-                    //todo
-                    //                mainViewModel.like(topPost);
+                    mainViewModel.like(topPost);
                 } else {
-                    //                mainViewModel.skip(topPost);
+                    mainViewModel.skip(topPost);
                 }
                 if (manager.getTopPosition() >= feedPostAdapter.getItemCount() - VISIBLE_THRESHOLD) {
                     mainViewModel.loadMore();
